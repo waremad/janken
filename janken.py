@@ -10,7 +10,6 @@ def lscount(ls,self):#ある連続する要素の出現回数
             out = out + 1
     return out
 
-
 def how_hand(ls,self):#何手ごとの統計を取ればよいか
     n = len(ls)-1
     count = 0
@@ -138,16 +137,20 @@ c w3 d3 l4
 p w4 d3 l3
 """
 
-cphand = random.choice(["g","c","p"])
-mehand = input("your hand ")
+gcp = ["g","c","p"]
+cphand = random.choice(gcp)
+mehand = ""
+while not(mehand in gcp):
+    mehand = input("your hand " + cphand)
 handlog = [mehand]
 winlog = [judge(mehand,cphand)]
 jprint(mehand,cphand,winlog)
-n = 1
-while not(n == 100):
+n = 30
+while not(winlog.count("me") == n or winlog.count("cp") == 30):
     cphand = janwin(max_pic(clip(handlog,mehand)))
-    mehand = input("your hand ")
+    mehand = ""
+    while not(mehand in gcp):
+        mehand = input("your hand "+ cphand)
     handlog.append(mehand)
     winlog.append(judge(mehand,cphand))
     jprint(mehand,cphand,winlog)
-    n += 1
